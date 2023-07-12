@@ -52,6 +52,7 @@ class MainActivity : AppCompatActivity()  {
             // Handle the case when biometric authentication is not supported
         }
 
+
         setContent {
             MobinApp(
                 activity = this@MainActivity,

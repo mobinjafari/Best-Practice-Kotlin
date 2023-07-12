@@ -20,6 +20,7 @@ import android.app.Activity
 import android.content.Context
 import android.content.ContextWrapper
 import android.util.Log
+import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.ActivityResult
@@ -50,15 +51,15 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.luminance
+import androidx.compose.ui.platform.ClipboardManager
+import androidx.compose.ui.platform.LocalClipboardManager
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import com.google.android.gms.auth.api.signin.GoogleSignIn
-import com.google.android.gms.auth.api.signin.GoogleSignInAccount
-import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.common.api.ApiException
 import com.google.android.gms.tasks.Task
 import kotlinx.coroutines.launch
@@ -76,7 +77,8 @@ fun WelcomeScreen(
 ) {
 
     val coroutineScope = rememberCoroutineScope()
-
+    val clipboardManager: ClipboardManager = LocalClipboardManager.current
+    val context = LocalContext.current
 
     val authResultLauncher =
         rememberLauncherForActivityResult(contract = AuthResultContract()) { task ->
@@ -88,6 +90,9 @@ fun WelcomeScreen(
                 } else {
                     coroutineScope.launch {
                         Log.d("GoogleLogin", "Google sign in succuss")
+                        clipboardManager.setText(AnnotatedString((account.idToken.toString())))
+                        Toast.makeText(context, "Copied to clipboard", Toast.LENGTH_SHORT).show()
+                        Log.d("GoogleLogin", "Google idToken : ${account.idToken}")
                         loginViewModel.signIn(
                             email = account.email.toString(),
                             displayName = account.displayName.toString(),
