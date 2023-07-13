@@ -62,8 +62,8 @@ fun SuperheroQuestion(
         possibleAnswers = listOf(
             Superhero(R.string.spark, R.drawable.spark),
             Superhero(R.string.lenz, R.drawable.lenz),
-            Superhero(R.string.bugchaos, R.drawable.bug_of_chaos),
-            Superhero(R.string.frag, R.drawable.frag),
+            Superhero(R.string.bugchaos, R.drawable.ic_grain),
+            Superhero(R.string.frag, R.drawable.ic_calendar),
         ),
         selectedAnswer = selectedAnswer,
         onOptionSelected = onOptionSelected,

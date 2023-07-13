@@ -10,11 +10,6 @@ import java.security.MessageDigest
 import java.security.NoSuchAlgorithmException
 import java.util.*
 
-/*
-*     AppSignatureHelper.kt
-*
-*     Created by Atiar Talukdar on 2022/09/15.
-*/
 
 
 //TODO: Warning: Make sure to delete this class before release build for play store / production

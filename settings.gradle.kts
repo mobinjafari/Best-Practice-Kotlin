@@ -33,3 +33,4 @@ dependencyResolutionManagement {
 rootProject.name = "BestPracticeKotlin"
 
 include(":app")
+
